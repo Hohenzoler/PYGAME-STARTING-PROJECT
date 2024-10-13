@@ -24,7 +24,6 @@ class Game:
 
         self.cfg = config.read_config()
 
-        self.make_thunder = False
         self.version = self.cfg['version']
         self.width = int(self.cfg['width'])
         self.height = int(self.cfg['height'])
