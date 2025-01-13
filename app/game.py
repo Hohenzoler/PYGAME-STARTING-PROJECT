@@ -34,6 +34,7 @@ class Game:
 
         print(f'PYGAME-STARTING-PROJECT, Copyright (C) 2024 Hohenzoler\nPYGAME-STARTING-PROJECT comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it under certain conditions; Go to License.md for more info.')
 
+        self.objects_in_memory = 0
         self.clock = pygame.time.Clock()
         self.font = None
 
@@ -60,9 +61,8 @@ class Game:
                             custom_text.Custom_text(self, 12, 45, f'Resolution: {self.width}x{self.height}', font=self.font, font_height=30, text_color='white', center=False),
                             custom_text.Custom_text(self, 12, 75, f'FPS cap: {self.fps}', font=self.font, font_height=30,  text_color='white', center=False),
                             custom_text.Custom_text(self, 12, 105, f'FPS: {self.clock.get_fps()}', font=self.font, font_height=30,  text_color='white', center=False),
-                            custom_text.Custom_text(self, 12, 135, f'Objects in memory: {len(self.current_display.objects)}', font=self.font, font_height=30,  text_color='white', center=False),
-                            custom_text.Custom_text(self, 12, 165, f'Current display: {type(self.current_display)}', font=self.font, font_height=30,  text_color='white', center=False),
-                            custom_text.Custom_text(self, 12, 195, f'Pointing at: {self.pointing_at}', font=self.font, font_height=30,  text_color='white', center=False)]
+                            custom_text.Custom_text(self, 12, 135, f'Objects in memory: {self.current_display.objects_in_memory}', font=self.font, font_height=30,  text_color='white', center=False),
+                            custom_text.Custom_text(self, 12, 165, f'Current display: {type(self.current_display)}', font=self.font, font_height=30,  text_color='white', center=False)]
 
         for debug_item in self.debug_items:
             debug_item.hidden = True
@@ -101,26 +101,9 @@ class Game:
     def update(self):
         if self.debug:
 
-            for obj in self.current_display.objects:
-                try:
-                    if obj.rect.collidepoint(pygame.mouse.get_pos()):
-                        if obj not in self.pointing_at:
-                            self.pointing_at.append(obj)
-                except:
-                    pass
-            i = []
-            for obj in self.pointing_at:
-                if obj.rect.collidepoint(pygame.mouse.get_pos()) == False or obj.display != self.current_display:
-                    i.append(obj)
-            for obj in i:
-                self.pointing_at.remove(obj)
-            i = []
-
-
             self.debug_items[3].update_text(f'FPS: {self.clock.get_fps()}')
-            self.debug_items[4].update_text(f'Objects in memory: {len(self.current_display.objects)}')
+            self.debug_items[4].update_text(f'Objects in memory: {self.current_display.objects_in_memory}')
             self.debug_items[5].update_text(f'Current display: {type(self.current_display)}')
-            self.debug_items[6].update_text(f'Pointing at: {self.pointing_at}')
 
 
         pygame.display.update()

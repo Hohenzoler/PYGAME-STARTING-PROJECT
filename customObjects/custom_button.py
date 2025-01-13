@@ -29,6 +29,7 @@ class Button:  # A button class
         self.append = append
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)  # Creating a rect object
 
+        self.display.objects_in_memory += 1
         if self.append:
             self.display.objects.append(self)  # Adding self to objects of the screen
 
@@ -54,10 +55,10 @@ class Button:  # A button class
             print('No action assigned to this button')
 
     def delete(self):
+        self.text.delete()
+        self.display.objects_in_memory -= 1
         if self.append:
             self.display.objects.remove(self.text)
-            self.display.objects.remove(self)
-        del self.text
         del self
 
     def get_hover_color(self):

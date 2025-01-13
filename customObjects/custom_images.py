@@ -34,6 +34,8 @@ class Custom_image:  # A class to easier render images
         if loaded:
             self.load()
 
+
+        self.display.objects_in_memory += 1
         if self.append:
             self.display.objects.append(self)
 
@@ -44,6 +46,7 @@ class Custom_image:  # A class to easier render images
         pass
 
     def delete(self):
+        self.display.objects_in_memory -= 1
         if self.append:
             self.display.objects.remove(self)
         del self

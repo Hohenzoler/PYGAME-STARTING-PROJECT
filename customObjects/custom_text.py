@@ -41,6 +41,7 @@ class Custom_text:  # A class that generates text
         else:  # Else it set self.x and self.y as the top left corner of the text
             self.rect.center = (self.x + self.rect.width//2, self.y + self.rect.height//2)
 
+        self.display.objects_in_memory += 1
         if self.append:
             self.display.objects.append(self)
 
@@ -52,6 +53,7 @@ class Custom_text:  # A class that generates text
         pass
 
     def delete(self):
+        self.display.objects_in_memory -= 1
         if self.append:
             self.display.objects.remove(self)
         del self
