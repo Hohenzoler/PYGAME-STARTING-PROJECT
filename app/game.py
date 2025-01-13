@@ -1,7 +1,7 @@
 import pygame
 from app import config, display, custom_text, custom_images
 
-# Copyright (C) 2024  Hohenzoler
+# Copyright (C) 2025  Hohenzoler
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ class Game:
         self.fullscreen = int(self.cfg['full-screen'])
         self.enable_debug = int(self.cfg['enable_debug'])
 
-        print(f'{self.title}, Copyright (C) 2024 Hohenzoler\n{self.title} comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it under certain conditions; Go to License.md for more info.')
+        print(f'PYGAME-STARTING-PROJECT, Copyright (C) 2024 Hohenzoler\nPYGAME-STARTING-PROJECT comes with ABSOLUTELY NO WARRANTY\nThis is free software, and you are welcome to redistribute it under certain conditions; Go to License.md for more info.')
 
         self.clock = pygame.time.Clock()
         self.font = None

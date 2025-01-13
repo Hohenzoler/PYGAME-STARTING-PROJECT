@@ -1,6 +1,6 @@
 from app import custom_images, custom_text, button
 
-# Copyright (C) 2024  Hohenzoler
+# Copyright (C) 2025  Hohenzoler
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
