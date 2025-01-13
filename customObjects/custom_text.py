@@ -16,7 +16,7 @@ import pygame
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 class Custom_text:  # A class that generates text
-    def __init__(self, display, x, y, font, font_height, text, text_color='Black', background_color=None, center=True, system=False):
+    def __init__(self, display, x, y, text, font=None, font_height=15, text_color='Black', background_color=None, center=True, append=True):
 
         self.display = display
 
@@ -26,14 +26,12 @@ class Custom_text:  # A class that generates text
         self.text = text
         self.text_color = text_color
         self.background_color = background_color
+        self.append = append
 
         self.hidden = False
 
         self.center = center
-        if not system:
-            self.font = pygame.font.Font(font, self.font_height)
-        else:
-            self.font = pygame.font.SysFont(font, self.font_height)
+        self.font = pygame.font.SysFont(font, self.font_height)
 
         self.text_to_render = self.font.render(self.text, True, self.text_color, self.background_color)
         self.rect = self.text_to_render.get_rect()
@@ -43,7 +41,8 @@ class Custom_text:  # A class that generates text
         else:  # Else it set self.x and self.y as the top left corner of the text
             self.rect.center = (self.x + self.rect.width//2, self.y + self.rect.height//2)
 
-        self.display.objects.append(self)
+        if self.append:
+            self.display.objects.append(self)
 
     def render(self):  # Renders the text
         if not self.hidden:
@@ -53,7 +52,8 @@ class Custom_text:  # A class that generates text
         pass
 
     def delete(self):
-        self.display.objects.remove(self)
+        if self.append:
+            self.display.objects.remove(self)
         del self
 
     def update_text(self, text):

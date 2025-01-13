@@ -17,7 +17,7 @@ from customObjects import custom_text
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 class Button:  # A button class
-    def __init__(self, display, action, x, y, width, height, color, text=None, text_color='black', outline_color=None, outline_width=5):  # Getting all the parameters of the button
+    def __init__(self, display, action, x, y, width, height, color=(255, 255, 255), text=None, text_color='black', outline_color=None, outline_width=5, append=True):  # Getting all the parameters of the button
 
         self.action = action
         self.display = display
@@ -26,10 +26,11 @@ class Button:  # A button class
         self.width = width
         self.height = height
         self.color = color
-
+        self.append = append
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)  # Creating a rect object
 
-        self.display.objects.append(self)  # Adding self to objects of the screen
+        if self.append:
+            self.display.objects.append(self)  # Adding self to objects of the screen
 
         if text != None:  # if there is text it's put on the button
             self.text = custom_text.Custom_text(self.display, self.x + self.width / 2, self.y + self.height / 2, None,
@@ -53,10 +54,10 @@ class Button:  # A button class
             print('No action assigned to this button')
 
     def delete(self):
-        self.display.objects.remove(self.text)
+        if self.append:
+            self.display.objects.remove(self.text)
+            self.display.objects.remove(self)
         del self.text
-
-        self.display.objects.remove(self)
         del self
 
     def get_hover_color(self):

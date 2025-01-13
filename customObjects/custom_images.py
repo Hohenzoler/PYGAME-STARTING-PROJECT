@@ -27,12 +27,14 @@ class Custom_image:  # A class to easier render images
 
         self.path = path  # path to the images
 
+        self.append = append
+
         self.loaded = loaded
 
         if loaded:
             self.load()
 
-        if append:
+        if self.append:
             self.display.objects.append(self)
 
     def render(self):  # rendering the image at self.x , self.y
@@ -42,10 +44,8 @@ class Custom_image:  # A class to easier render images
         pass
 
     def delete(self):
-        try:
+        if self.append:
             self.display.objects.remove(self)
-        except:
-            pass
         del self
 
     def rotate_toward(self, pos):
