@@ -1,4 +1,4 @@
-from app import custom_images, custom_text, button
+from customObjects import custom_images, custom_text, custom_button
 
 # Copyright (C) 2025  Hohenzoler
 #

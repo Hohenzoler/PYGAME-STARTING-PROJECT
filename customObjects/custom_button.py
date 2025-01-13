@@ -1,6 +1,5 @@
-import app.game
 import pygame
-from app import custom_text
+from customObjects import custom_text
 
 # Copyright (C) 2025  Hohenzoler
 #
