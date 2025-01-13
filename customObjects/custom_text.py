@@ -16,7 +16,7 @@ import pygame
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 class Custom_text:  # A class that generates text
-    def __init__(self, display, x, y, text, font=None, font_height=15, text_color='Black', background_color=None, center=True, append=True):
+    def __init__(self, display, x, y, text, font=None, font_height=50, text_color='Black', background_color=None, center=True, append=True):
 
         self.display = display
 
@@ -31,7 +31,7 @@ class Custom_text:  # A class that generates text
         self.hidden = False
 
         self.center = center
-        self.font = pygame.font.SysFont(font, self.font_height)
+        self.font = pygame.font.Font(font, self.font_height)
 
         self.text_to_render = self.font.render(self.text, True, self.text_color, self.background_color)
         self.rect = self.text_to_render.get_rect()

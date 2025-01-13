@@ -21,7 +21,7 @@ class basic_display:
         self.screen = self.game.screen
         self.objects = []
 
-        self.loading_error = custom_text.Custom_text(self, self.game.width/2, self.game.height/2, None, 50, 'Error no display found!', text_color='white', system=True)
+        self.loading_error = custom_text.Custom_text(self, self.game.width/2, self.game.height/2, 'Error, no display found!', text_color='white')
         self.loading_error.hidden = True
 
 
