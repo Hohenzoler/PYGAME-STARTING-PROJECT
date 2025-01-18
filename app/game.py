@@ -67,6 +67,21 @@ class Game:
         for debug_item in self.debug_items:
             debug_item.hidden = True
 
+
+    def fade(self, fade_in=True):
+        fade_surface = pygame.Surface((self.width, self.height))
+        fade_surface.fill((0, 0, 0))
+        for alpha in range(0, 255, 5):
+            fade_surface.set_alpha(alpha if fade_in else 255 - alpha)
+            self.render()
+            self.screen.blit(fade_surface, (0, 0))
+            pygame.display.update()
+
+    def change_display(self, new_display):
+        self.fade(fade_in=True)
+        self.current_display = self.displays[new_display]
+        self.fade(fade_in=False)
+
     def mainloop(self):
         while self.run:
             self.current_display.mainloop()
